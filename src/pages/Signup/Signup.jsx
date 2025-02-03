@@ -159,7 +159,7 @@ export default function Signup() {
           >
             Sign Up
           </button>
-          <div className="flex gap-1 items-center justify-center">
+          <div className="flex gap-1 items-center justify-center text-nowrap">
             <span className="text-slate-400">Already have an account?</span>
             <Link
               to="/login"

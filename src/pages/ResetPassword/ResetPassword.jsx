@@ -32,7 +32,7 @@ export default function ResetPassword() {
           url: "https://ecommerce.routemisr.com/api/v1/auth/resetPassword",
           method: "PUT",
           data: {
-            email: localStorage.getItem("resetEmail"), // Assuming you stored the email in localStorage
+            email: localStorage.getItem("resetEmail"),
             newPassword: values.newPassword,
           },
         };
@@ -110,7 +110,7 @@ export default function ResetPassword() {
           </div>
           <button
             type="submit"
-            className="btn w-1/2 mx-auto block px-4 py-2 bg-primary-500 hover:bg-primary-600"
+            className="btn min-w-1/2 mx-auto  block px-4 py-2 bg-primary-500 hover:bg-primary-600"
           >
             Reset Password
           </button>

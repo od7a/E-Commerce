@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
 
           <div className="py-3 flex flex-col gap-2 xl:flex-row items-center justify-between border-y-2 border-slate-300 border-opacity-50">
-            <div className="payment-way flex flex-wrap items-center gap-2 md:gap-4 mb-4 md:mb-0">
+            <div className="payment-way flex flex-nowrap items-center gap-2 md:gap-4 mb-4 md:mb-2">
               <h4 className="text-sm md:text-base whitespace-nowrap">
                 Payment Partners
               </h4>
@@ -58,7 +58,7 @@ export default function Footer() {
               />
             </div>
 
-            <div className="download-way flex flex-wrap items-center gap-2 md:gap-4">
+            <div className="download-way flex flex-nowrap items-center gap-2 md:gap-4">
               <h4 className="text-sm md:text-base whitespace-nowrap">
                 Get deliveries with FreshCart
               </h4>

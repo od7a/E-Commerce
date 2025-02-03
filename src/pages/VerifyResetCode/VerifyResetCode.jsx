@@ -13,7 +13,7 @@ export default function VerifyResetCode() {
   const validationSchema = Yup.object({
     resetCode: Yup.string()
       .required("* Reset code is required.")
-      .matches(/^[0-9]{6}$/, "* Reset code must be a 6-digit number."),
+      .matches(/^[0-9]{5}$/, "* Reset code must be a 5-digit number."),
   });
 
   const formik = useFormik({

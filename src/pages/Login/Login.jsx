@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, {useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import favicon from "../../assets/imgs/favicon.png";
+import { UserContext } from "../../component/context/User.context";
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
   const emailRegx = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
   const navigate = useNavigate();
   const [incorrectData, setIncorrectData] = useState(null);
+  const { setToken } = useContext(UserContext);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -37,6 +39,8 @@ export default function Login() {
         };
         let { data } = await axios.request(options);
         if (data.message === "success") {
+          setToken(data.token);
+          localStorage.setItem("token", data.token);
           toast.success("Login successful! Redirecting to home page...");
           setIncorrectData(null);
           setTimeout(() => {
@@ -56,7 +60,7 @@ export default function Login() {
   });
 
   return (
-    <section className="flex justify-center items-center  p-4">
+    <section className="flex justify-center items-center p-4">
       <div className="min-h-[400px] w-full sm:w-3/4 md:w-1/2 lg:w-1/3 bg-slate-50 px-6 py-3 rounded-lg shadow-sm shadow-current">
         <header className="text-center">
           <img src={favicon} alt="" className="size-[90px] mx-auto mb-3" />
@@ -115,7 +119,7 @@ export default function Login() {
           >
             Forget Password?
           </Link>
-          <div className="flex gap-1 items-center justify-center">
+          <div className="flex gap-1 items-center justify-center text-nowrap">
             <span className="text-slate-400">Don't have an account?</span>
             <Link
               to="/signup"
