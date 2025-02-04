@@ -8,6 +8,9 @@
   .btn {
     @apply  rounded-md text-white text-nowrap  transition-colors duration-300;
   }
+  .animation-icon {
+    @apply -translate-x-6 opacity-0 group-hover/parent:opacity-100 group-hover/parent:translate-x-0  group-hover/parent:duration-500 hover:scale-125 duration-300 transition-transform  size-8 flex items-center justify-center rounded-full cursor-pointer;
+  }
 }
 body {
   font-family: "Encode Sans Expanded", sans-serif;

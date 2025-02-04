@@ -96,7 +96,7 @@ export default function Navbar() {
 
         {/* Cart, Menu, and Logout Icons */}
         {token && (
-          <div className="flex items-center gap-2 ml-0 text-lg lg:text-2xl cursor-pointer">
+          <div className="flex items-center gap-3 ml-0 text-lg lg:text-2xl cursor-pointer">
             <div className="icon-heart relative">
               <i className="fa-regular fa-heart hover:text-primary-700 transition-colors duration-300"></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
@@ -124,6 +124,34 @@ export default function Navbar() {
             <CheckLogout />
           </div>
         )}
+        {/* {!token && (
+          <ul className="flex items-center gap-3">
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 text-nowrap ${
+                    isActive ? "before:!w-full font-semibold" : ""
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 text-nowrap ${
+                    isActive ? "before:!w-full font-semibold" : ""
+                  }`
+                }
+              >
+                SignUp
+              </NavLink>
+            </li>
+          </ul>
+        )} */}
       </div>
     </nav>
   );

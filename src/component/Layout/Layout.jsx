@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <Navbar />
-      <main className="container min-h-[60vh] pt-36 pb-20 sm:pt-28 ">
+      <main className="container min-h-[60vh] pt-[110px] pb-20">
         <div className="container">
           <Outlet />
         </div>

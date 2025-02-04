@@ -1,8 +1,7 @@
-import { Button, Modal } from 'flowbite-react';
-import { useContext, useState } from 'react';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
-import { UserContext } from '../context/User.context';
-
+import { Button, Modal } from "flowbite-react";
+import { useContext, useState } from "react";
+import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { UserContext } from "../context/User.context";
 
 export function CheckLogout() {
   const [openModal, setOpenModal] = useState(false);
@@ -27,7 +26,7 @@ export function CheckLogout() {
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this product?
+              Are you sure you want to log out?
             </h3>
             <div className="flex justify-center gap-4">
               <Button
@@ -37,7 +36,7 @@ export function CheckLogout() {
                   logOut();
                 }}
               >
-                {"Yes, I'm sure"}
+                Yes, log out
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>
                 No, cancel
