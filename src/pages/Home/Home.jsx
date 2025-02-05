@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import HomeSlider from "../../component/HomeSlider/HomeSlider";
 import CategorySlider from "../../component/CategorySlider/CategorySlider";
-import { useFormik } from "formik"; // استيراد Formik
+import { useFormik } from "formik";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -23,17 +23,18 @@ export default function Home() {
   useEffect(() => {
     getProducts();
   }, []);
-
   const formik = useFormik({
     initialValues: {
-      searchTerm: "", 
+      searchTerm: "",
     },
   });
 
   useEffect(() => {
     if (products) {
       const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(formik.values.searchTerm.toLowerCase())
+        product.title
+          .toLowerCase()
+          .includes(formik.values.searchTerm.toLowerCase())
       );
       setFilteredProducts(filtered);
     }

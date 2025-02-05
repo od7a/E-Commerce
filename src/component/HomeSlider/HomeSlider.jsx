@@ -46,15 +46,7 @@ export default function HomeSlider() {
           </Swiper>
         </div>
         <div className="col-span-4">
-          <Swiper
-            slidesPerView={1}
-            loop={true}
-            modules={[Autoplay]}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
-            }}
-          >
+          <Swiper>
             <SwiperSlide>
               <img
                 src={sliderImage2}
@@ -77,15 +69,7 @@ export default function HomeSlider() {
               />
             </SwiperSlide>
           </Swiper>
-          <Swiper
-            slidesPerView={1}
-            loop={true}
-            modules={[Autoplay]}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
-            }}
-          >
+          <Swiper>
             <SwiperSlide>
               <img
                 src={sliderImage3}

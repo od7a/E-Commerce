@@ -11,6 +11,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import UserProvider from "./component/context/User.context";
 import ProtectRoute from "./component/ProtectedRoute/ProtectRoute";
 import GuestRoute from "./component/GuestRoute/GuestRoute";
+import Products from "./pages/Products/Products";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -21,7 +22,10 @@ export default function App() {
           <Layout />
         </ProtectRoute>
       ),
-      children: [{ index: true, element: <Home /> }],
+      children: [
+        { index: true, element: <Home /> },
+        { path: "/products", element: <Products /> },
+      ],
     },
     {
       path: "/",
