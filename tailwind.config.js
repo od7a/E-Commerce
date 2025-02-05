@@ -24,6 +24,20 @@ export default {
       screens: {
         "2xl": "1280px",
       },
+      keyframes: {
+        bounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        scaleUp: {
+          "0%": { transform: "scale(0.9)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
+        },
+      },
+      animation: {
+        bounce: "bounce 1s infinite",
+        "scale-up": "scaleUp 0.3s ease-out",
+      },
     },
   },
   plugins: [flowbite.plugin()],

@@ -12,6 +12,8 @@ import UserProvider from "./component/context/User.context";
 import ProtectRoute from "./component/ProtectedRoute/ProtectRoute";
 import GuestRoute from "./component/GuestRoute/GuestRoute";
 import Products from "./pages/Products/Products";
+import Categories from "./pages/Categories/Categories";
+import Brands from "./pages/Brands/Brands";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -25,6 +27,8 @@ export default function App() {
       children: [
         { index: true, element: <Home /> },
         { path: "/products", element: <Products /> },
+        { path: "/categories", element: <Categories /> },
+        { path: "/brands", element: <Brands /> },
       ],
     },
     {

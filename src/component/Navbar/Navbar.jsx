@@ -35,7 +35,7 @@ export default function Navbar() {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+                  `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
@@ -47,7 +47,7 @@ export default function Navbar() {
               <NavLink
                 to="/categories"
                 className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+                  `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
@@ -59,7 +59,7 @@ export default function Navbar() {
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+                  `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
@@ -71,7 +71,7 @@ export default function Navbar() {
               <NavLink
                 to="/brands"
                 className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+                  `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
@@ -83,7 +83,7 @@ export default function Navbar() {
               <NavLink
                 to="/orders"
                 className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
+                  `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
