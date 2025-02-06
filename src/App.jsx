@@ -8,12 +8,14 @@ import Signup from "./pages/Signup/Signup";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import VerifyResetCode from "./pages/VerifyResetCode/VerifyResetCode";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
-import UserProvider from "./component/context/User.context";
+import UserProvider from "./context/User.context";
 import ProtectRoute from "./component/ProtectedRoute/ProtectRoute";
 import GuestRoute from "./component/GuestRoute/GuestRoute";
 import Products from "./pages/Products/Products";
 import Categories from "./pages/Categories/Categories";
 import Brands from "./pages/Brands/Brands";
+import CartProvider from "./context/Cart.context";
+import Cart from "./pages/Cart/Cart";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -29,6 +31,7 @@ export default function App() {
         { path: "/products", element: <Products /> },
         { path: "/categories", element: <Categories /> },
         { path: "/brands", element: <Brands /> },
+        { path: "/cart", element: <Cart/> },
       ],
     },
     {
@@ -50,8 +53,10 @@ export default function App() {
 
   return (
     <UserProvider>
-      <RouterProvider router={router} />
-      <Toaster />
+      <CartProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </CartProvider>
     </UserProvider>
   );
 }

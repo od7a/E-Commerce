@@ -1,22 +1,25 @@
+import { useContext } from "react";
+import { CartContext } from "../../context/Cart.context";
+
 export default function Card({ productInfo }) {
-  const {
-    imageCover,
-    category,
-    description,
-    title,
-    price,
-    ratingsAverage,
-  } = productInfo;
+  const { imageCover, category, description, title, price, ratingsAverage, id } = productInfo;
+  const { addProductToCart } = useContext(CartContext);
+
   return (
     <>
       <div className="card group/parent shadow-lg rounded-lg overflow-hidden col-span-12 sm:col-span-6 md:col-span-4  lg:col-span-3">
         <div className="relative">
           <img src={imageCover} alt="" />
           <div className="overlay group-hover/parent:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-4 gap-4 absolute left-0 top-0 w-full h-full bg-slate-400 bg-opacity-40 opacity-0">
-            <div className="icon animation-icon  bg-white text-primary-500">
+            <div className="icon animation-icon bg-white text-primary-500">
               <i className="fa-solid fa-heart"></i>
             </div>
-            <div className="icon animation-icon bg-white text-primary-500">
+            <div
+              className="icon animation-icon bg-white text-primary-500"
+              onClick={() => {
+                addProductToCart({ productId: id });
+              }}
+            >
               <i className="fa-solid fa-cart-shopping"></i>
             </div>
             <div className="icon animation-icon bg-white text-primary-500">

@@ -1,12 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import freshCartLogo from "../../assets/imgs/freshcart-logo.svg";
-import { UserContext } from "../context/User.context";
+import { UserContext } from "../../context/User.context";
 import { CheckLogout } from "../CheckLogOut/CheckLogOut";
+import { CartContext } from "../../context/Cart.context";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token } = useContext(UserContext);
+  const { cartInfo, getCartProducts } = useContext(CartContext);
+  useEffect(() => {
+    getCartProducts;
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,6 +44,9 @@ export default function Navbar() {
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
               >
                 Home
               </NavLink>
@@ -51,6 +59,9 @@ export default function Navbar() {
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
               >
                 Categories
               </NavLink>
@@ -63,6 +74,9 @@ export default function Navbar() {
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
               >
                 Products
               </NavLink>
@@ -75,6 +89,9 @@ export default function Navbar() {
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
               >
                 Brands
               </NavLink>
@@ -87,6 +104,9 @@ export default function Navbar() {
                     isActive ? "before:!w-full font-semibold" : ""
                   }`
                 }
+                onClick={() => {
+                  setIsMenuOpen(false);
+                }}
               >
                 Orders
               </NavLink>
@@ -100,16 +120,28 @@ export default function Navbar() {
             <div className="icon-heart relative">
               <i className="fa-regular fa-heart hover:text-primary-700 transition-colors duration-300"></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
-                3
+                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
               </div>
             </div>
 
-            <div className="icon-cart relative">
-              <i className="fa-solid fa-cart-plus hover:text-primary-700 transition-colors duration-300"></i>
+            <Link to="/cart" className="icon-cart relative">
+              <i
+                className={`fa-solid fa-cart-plus hover:text-primary-700 transition-colors duration-300 ${
+                  cartInfo.numOfCartItems === 0
+                    ? "text-black"
+                    : "text-primary-800"
+                }`}
+              ></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
-                5
+                {cartInfo === null ? (
+                  <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                ) : (
+                  <span className="text-sm font-semibold">
+                    {cartInfo.numOfCartItems}
+                  </span>
+                )}
               </div>
-            </div>
+            </Link>
 
             {/* Menu Button for small screens */}
             <button

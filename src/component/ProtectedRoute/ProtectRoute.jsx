@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserContext } from "../context/User.context";
+import { UserContext } from "../../context/User.context";
 import { Navigate } from "react-router-dom";
 
 export default function ProtectRoute({ children }) {

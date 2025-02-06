@@ -1,7 +1,7 @@
 import { Button, Modal } from "flowbite-react";
 import { useContext, useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { UserContext } from "../context/User.context";
+import { UserContext } from "../../context/User.context";
 
 export function CheckLogout() {
   const [openModal, setOpenModal] = useState(false);

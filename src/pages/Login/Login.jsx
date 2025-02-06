@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import favicon from "../../assets/imgs/favicon.png";
-import { UserContext } from "../../component/context/User.context";
+import { UserContext } from "../../context/User.context";
 
 export default function Login() {
   const passwordRegx = /^[a-zA-Z0-9!@#$%^&*]{6,20}$/;
