@@ -9,8 +9,9 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token } = useContext(UserContext);
   const { cartInfo, getCartProducts } = useContext(CartContext);
+
   useEffect(() => {
-    getCartProducts;
+    getCartProducts();
   }, []);
 
   const toggleMenu = () => {
@@ -18,9 +19,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-slate-100  py-5 px-2 shadow-sm fixed top-0 right-0 left-0 z-30">
+    <nav className="bg-slate-100 py-5 px-2 shadow-sm fixed top-0 right-0 left-0 z-30">
       <div className="container flex items-center justify-between">
-        {/* Logo */}
         <Link to="/">
           <img
             src={freshCartLogo}
@@ -29,7 +29,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Navigation Links */}
         {token && (
           <ul
             className={`${
@@ -114,27 +113,24 @@ export default function Navbar() {
           </ul>
         )}
 
-        {/* Cart, Menu, and Logout Icons */}
         {token && (
           <div className="flex items-center gap-3 ml-0 text-lg lg:text-2xl cursor-pointer">
             <div className="icon-heart relative">
               <i className="fa-regular fa-heart hover:text-primary-700 transition-colors duration-300"></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
-                <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                <i className="fa-solid fa-spinner fa-spin-pulse"></i>
               </div>
             </div>
 
             <Link to="/cart" className="icon-cart relative">
               <i
                 className={`fa-solid fa-cart-plus hover:text-primary-700 transition-colors duration-300 ${
-                  cartInfo.numOfCartItems === 0
-                    ? "text-black"
-                    : "text-primary-800"
+                  cartInfo?.numOfCartItems === 0 ? "" : "text-primary-800"
                 }`}
               ></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
                 {cartInfo === null ? (
-                  <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+                  <i className="fa-solid fa-spinner fa-spin-pulse"></i>
                 ) : (
                   <span className="text-sm font-semibold">
                     {cartInfo.numOfCartItems}
@@ -143,7 +139,6 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Menu Button for small screens */}
             <button
               onClick={toggleMenu}
               className={`lg:hidden text-xl cursor-pointer transition-colors duration-300 ${
@@ -156,34 +151,6 @@ export default function Navbar() {
             <CheckLogout />
           </div>
         )}
-        {/* {!token && (
-          <ul className="flex items-center gap-3">
-            <li>
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 text-nowrap ${
-                    isActive ? "before:!w-full font-semibold" : ""
-                  }`
-                }
-              >
-                Login
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/signup"
-                className={({ isActive }) =>
-                  `relative before:absolute before:w-0 before:h-0.5 before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 text-nowrap ${
-                    isActive ? "before:!w-full font-semibold" : ""
-                  }`
-                }
-              >
-                SignUp
-              </NavLink>
-            </li>
-          </ul>
-        )} */}
       </div>
     </nav>
   );
