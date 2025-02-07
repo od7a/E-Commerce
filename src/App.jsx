@@ -16,6 +16,8 @@ import Categories from "./pages/Categories/Categories";
 import Brands from "./pages/Brands/Brands";
 import CartProvider from "./context/Cart.context";
 import Cart from "./pages/Cart/Cart";
+import WishListProvider from "./context/WishList.context";
+import Wishlist from "./pages/Wishlist/Wishlist";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -32,6 +34,7 @@ export default function App() {
         { path: "/categories", element: <Categories /> },
         { path: "/brands", element: <Brands /> },
         { path: "/cart", element: <Cart/> },
+        { path: "/wishlist", element: <Wishlist/> },
       ],
     },
     {
@@ -53,10 +56,12 @@ export default function App() {
 
   return (
     <UserProvider>
+      <WishListProvider>
       <CartProvider>
         <RouterProvider router={router} />
         <Toaster />
       </CartProvider>
+      </WishListProvider>
     </UserProvider>
   );
 }

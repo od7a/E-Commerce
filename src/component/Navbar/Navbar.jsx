@@ -4,14 +4,17 @@ import freshCartLogo from "../../assets/imgs/freshcart-logo.svg";
 import { UserContext } from "../../context/User.context";
 import { CheckLogout } from "../CheckLogOut/CheckLogOut";
 import { CartContext } from "../../context/Cart.context";
+import { WishListContext } from "../../context/WishList.context";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token } = useContext(UserContext);
   const { cartInfo, getCartProducts } = useContext(CartContext);
+  const { wishlistInfo, getWishlistProducts } = useContext(WishListContext);
 
   useEffect(() => {
     getCartProducts();
+    getWishlistProducts();
   }, []);
 
   const toggleMenu = () => {
@@ -115,12 +118,22 @@ export default function Navbar() {
 
         {token && (
           <div className="flex items-center gap-3 ml-0 text-lg lg:text-2xl cursor-pointer">
-            <div className="icon-heart relative">
-              <i className="fa-regular fa-heart hover:text-primary-700 transition-colors duration-300"></i>
+            <Link to="/wishlist" className="icon-heart relative">
+              <i
+                className={`fa-solid fa-heart hover:text-primary-700 transition-colors duration-300 ${
+                  wishlistInfo?.data?.length === 0 ? "" : "text-primary-800 "
+                }`}
+              ></i>
               <div className="absolute h-4 w-4 lg:h-5 lg:w-5 rounded-full bg-primary-800 text-white top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs flex items-center justify-center">
-                <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                {wishlistInfo === null ? (
+                  <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                ) : (
+                  <span className="text-sm font-semibold">
+                    {wishlistInfo.data.length}
+                  </span>
+                )}
               </div>
-            </div>
+            </Link>
 
             <Link to="/cart" className="icon-cart relative">
               <i

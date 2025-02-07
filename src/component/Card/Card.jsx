@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
+import { WishListContext } from "../../context/WishList.context";
 
 export default function Card({ productInfo }) {
   const { imageCover, category, description, title, price, ratingsAverage, id } = productInfo;
   const { addProductToCart } = useContext(CartContext);
+  const {addProductToWishList,checkedProduct}=useContext(WishListContext);
 
   return (
     <>
@@ -11,7 +13,12 @@ export default function Card({ productInfo }) {
         <div className="relative">
           <img src={imageCover} alt="" />
           <div className="overlay group-hover/parent:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-4 gap-4 absolute left-0 top-0 w-full h-full bg-slate-400 bg-opacity-40 opacity-0">
-            <div className="icon animation-icon bg-white text-primary-500">
+            <div className={`animation-icon ${
+                checkedProduct({ productId: id })
+                  ? 'text-white bg-primary-500'
+                  : 'bg-white text-primary-500'
+              } `}
+            onClick={()=>{addProductToWishList({productId:id})}}>
               <i className="fa-solid fa-heart"></i>
             </div>
             <div
