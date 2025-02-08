@@ -65,7 +65,7 @@ export default function WishListProvider({ children }) {
       let { data } = await axios.request(options);
       if (data.status === "success") {
         toast.success("Product removed successfully");
-        setWishlistInfo(data);
+        getWishlistProducts();
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "An error occurred");

@@ -120,7 +120,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3 ml-0 text-lg lg:text-2xl cursor-pointer">
             <Link to="/wishlist" className="icon-heart relative">
               <i
-                className={`fa-solid fa-heart hover:text-primary-700 transition-colors duration-300 ${
+                className={`fa-regular fa-heart hover:text-primary-700 transition-colors duration-300 ${
                   wishlistInfo?.data?.length === 0 ? "" : "text-primary-800 "
                 }`}
               ></i>

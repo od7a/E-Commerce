@@ -51,7 +51,9 @@ export default function Wishlist() {
                   <div className="flex w-full flex-wrap justify-between px-5 gap-5 items-center">
                     <div>
                       <h2 className="text-xl text-primary-400 font-semibold text-nowrap">
+                        <Link to={`/productDetails/${ product.id}`}>
                         {product.title}
+                        </Link>
                       </h2>
                       <span className="text-primary-300 font-semibold text-nowrap">
                         ${product.price}

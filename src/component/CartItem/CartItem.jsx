@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/Cart.context";
+import { Link } from "react-router-dom";
 
 export default function CartItem({ productInfo }) {
   let { removeProductFromCart, updateProductCart } = useContext(CartContext);
@@ -16,7 +17,9 @@ export default function CartItem({ productInfo }) {
         <div className="flex w-full flex-wrap justify-between px-5 gap-5 items-center">
           <div>
             <h2 className="text-xl text-primary-400 font-semibold text-nowrap">
+              <Link to={`/productDetails/${productInfo.product.id}`}>
               {productInfo.product.title}
+              </Link>
             </h2>
             <h3 className="text-md font-medium text-nowrap">
               {productInfo.product.category.name}

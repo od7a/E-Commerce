@@ -18,6 +18,7 @@ import CartProvider from "./context/Cart.context";
 import Cart from "./pages/Cart/Cart";
 import WishListProvider from "./context/WishList.context";
 import Wishlist from "./pages/Wishlist/Wishlist";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -33,8 +34,9 @@ export default function App() {
         { path: "/products", element: <Products /> },
         { path: "/categories", element: <Categories /> },
         { path: "/brands", element: <Brands /> },
-        { path: "/cart", element: <Cart/> },
-        { path: "/wishlist", element: <Wishlist/> },
+        { path: "/cart", element: <Cart /> },
+        { path: "/wishlist", element: <Wishlist /> },
+        { path: "/productDetails/:id", element: <ProductDetails /> },
       ],
     },
     {
@@ -57,10 +59,10 @@ export default function App() {
   return (
     <UserProvider>
       <WishListProvider>
-      <CartProvider>
-        <RouterProvider router={router} />
-        <Toaster />
-      </CartProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+          <Toaster />
+        </CartProvider>
       </WishListProvider>
     </UserProvider>
   );
