@@ -8,10 +8,11 @@ import axios from "axios";
 export default function Products() {
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(null);
+  const [sortOption, setSortOption] = useState("");
 
-  async function getProducts(sortOption = "") {
+  async function getProducts() {
     const options = {
-      url: `https://ecommerce.routemisr.com/api/v1/products${sortOption}`,
+      url: "https://ecommerce.routemisr.com/api/v1/products",
       method: "GET",
     };
     let { data } = await axios.request(options);
@@ -28,17 +29,31 @@ export default function Products() {
       search: "",
     },
   });
+
   useEffect(() => {
     if (products) {
-      const filtered = products.filter((product) =>
-        product.title.toLowerCase().includes(formik.values.search.toLowerCase())
-      );
+      let filtered = [...products];
+      
+      // Apply search filter
+      if (formik.values.search) {
+        filtered = filtered.filter((product) =>
+          product.title.toLowerCase().includes(formik.values.search.toLowerCase())
+        );
+      }
+      
+      // Apply sorting
+      if (sortOption === "price") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortOption === "-price") {
+        filtered.sort((a, b) => b.price - a.price);
+      }
+      
       setFilteredProducts(filtered);
     }
-  }, [formik.values.search, products]);
+  }, [formik.values.search, products, sortOption]);
 
-  const handleFilter = (sortOption) => {
-    getProducts(sortOption);
+  const handleFilter = (selectedSortOption) => {
+    setSortOption(selectedSortOption);
   };
 
   return (

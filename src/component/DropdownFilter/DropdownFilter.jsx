@@ -22,13 +22,13 @@ export default function DropdownFilter({ onFilter }) {
           <ul className="absolute bg-white w-full py-2 mt-1 rounded-md shadow-lg z-50">
             <li
               className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100"
-              onClick={() => handleFilter("?sort=price")}
+              onClick={() => handleFilter("price")}
             >
               Sort by Lowest Price
             </li>
             <li
               className="px-4 py-2 cursor-pointer text-gray-700 hover:bg-gray-100"
-              onClick={() => handleFilter("?sort=-price")}
+              onClick={() => handleFilter("-price")}
             >
               Sort by Highest Price
             </li>
