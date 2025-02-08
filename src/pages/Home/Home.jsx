@@ -9,20 +9,32 @@ import { useFormik } from "formik";
 export default function Home() {
   const [products, setProducts] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(null);
+  const [categories, setCategories] = useState(null); // حالة جديدة للفئات
 
   async function getProducts() {
     const options = {
       url: "https://ecommerce.routemisr.com/api/v1/products",
-      method: "Get",
+      method: "GET",
     };
     let { data } = await axios.request(options);
     setProducts(data.data);
     setFilteredProducts(data.data);
   }
 
+  async function getCategories() {
+    const options = {
+      url: "https://ecommerce.routemisr.com/api/v1/categories",
+      method: "GET",
+    };
+    let { data } = await axios.request(options);
+    setCategories(data.data);
+  }
+
   useEffect(() => {
     getProducts();
+    getCategories();
   }, []);
+
   const formik = useFormik({
     initialValues: {
       searchTerm: "",
@@ -40,11 +52,15 @@ export default function Home() {
     }
   }, [formik.values.searchTerm, products]);
 
+  if (!filteredProducts || !categories) {
+    return <Loading />;
+  }
+
   return (
     <>
       <section className="px-4">
         <HomeSlider />
-        <CategorySlider />
+        <CategorySlider categories={categories} />
         <form className="w-3/4 mx-auto mb-8">
           <input
             type="search"
@@ -55,15 +71,11 @@ export default function Home() {
             onChange={formik.handleChange}
           />
         </form>
-        {!filteredProducts ? (
-          <Loading />
-        ) : (
-          <div className="grid grid-cols-12 gap-5">
-            {filteredProducts.map((product) => (
-              <Card key={product.id} productInfo={product} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-12 gap-5">
+          {filteredProducts.map((product) => (
+            <Card key={product.id} productInfo={product} />
+          ))}
+        </div>
       </section>
     </>
   );
