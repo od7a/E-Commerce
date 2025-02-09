@@ -47,6 +47,7 @@ export default function CheckOut() {
         data: values,
       };
       let { data } = await axios.request(options);
+      console.log(data)
 
       if (data.status === "success") {
         toast.success("Redirecting to Stripe...");
