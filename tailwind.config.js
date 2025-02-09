@@ -38,6 +38,9 @@ export default {
         bounce: "bounce 1s infinite",
         "scale-up": "scaleUp 0.3s ease-out",
       },
+      fontFamily:{
+        cairo:"Cairo Variable"
+      }
     },
   },
   plugins: [flowbite.plugin()],

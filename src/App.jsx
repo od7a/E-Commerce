@@ -21,6 +21,7 @@ import Wishlist from "./pages/Wishlist/Wishlist";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import AllOrders from "./pages/AllOrders/AllOrders";
+import NotFound from "./pages/NotFound/NotFound";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -41,6 +42,7 @@ export default function App() {
         { path: "/productDetails/:id", element: <ProductDetails /> },
         { path: "/checkout", element: <CheckOut /> },
         { path: "/allorders", element: <AllOrders /> },
+        { path: "*", element: <NotFound /> },
       ],
     },
     {
@@ -56,6 +58,7 @@ export default function App() {
         { path: "forgetPassword", element: <ForgetPassword /> },
         { path: "verifyResetCode", element: <VerifyResetCode /> },
         { path: "resetPassword", element: <ResetPassword /> },
+        { path: "*", element: <NotFound /> },
       ],
     },
   ]);

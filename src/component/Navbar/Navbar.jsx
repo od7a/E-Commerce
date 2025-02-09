@@ -100,7 +100,7 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink
-                to="/orders"
+                to="/allorders"
                 className={({ isActive }) =>
                   `relative before:absolute before:w-0 before:h-[2.5px] before:bg-primary-400 before:left-0 before:-bottom-1 hover:before:w-full before:transition-[width] before:duration-300 ${
                     isActive ? "before:!w-full font-semibold" : ""
