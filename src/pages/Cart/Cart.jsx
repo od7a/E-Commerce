@@ -3,7 +3,7 @@ import imageloadin from "../../assets/imgs/Animation - 1734929112513.gif";
 import { CartContext } from "../../context/Cart.context";
 import Loading from "../../component/Loading/Loading";
 import CartItem from "../../component/CartItem/CartItem";
-import { Link } from "react-router-dom";
+import { Link, Links } from "react-router-dom";
 
 export default function Cart() {
   const { getCartProducts, cartInfo, clearAllCart } = useContext(CartContext);
@@ -58,10 +58,10 @@ export default function Cart() {
                   >
                     Clear All
                   </button>
-                  <button className="btn bg-primary-600 py-3 px-4 text-white font-semibold hover:bg-primary-700">
+                  <Link to="/checkout" className="btn bg-primary-600 py-3 px-4 text-white font-semibold hover:bg-primary-700">
                     <i className="fa-solid fa-cart-shopping fa-bounce mr-2"></i>
                     Buy now
-                  </button>
+                  </Link>
                 </div>
               </div>
             </>
