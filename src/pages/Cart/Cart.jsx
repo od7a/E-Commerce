@@ -4,6 +4,7 @@ import { CartContext } from "../../context/Cart.context";
 import Loading from "../../component/Loading/Loading";
 import CartItem from "../../component/CartItem/CartItem";
 import { Link, Links } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   const { getCartProducts, cartInfo, clearAllCart } = useContext(CartContext);
@@ -14,6 +15,13 @@ export default function Cart() {
 
   return (
     <>
+      <Helmet>
+        <title>FreshCart - Shopping Cart</title>
+        <meta
+          name="description"
+          content="Manage your shopping cart items. Review your selected products, modify quantities, and proceed to checkout securely."
+        />
+      </Helmet>
       {!cartInfo ? (
         <Loading />
       ) : (
@@ -58,7 +66,10 @@ export default function Cart() {
                   >
                     Clear All
                   </button>
-                  <Link to="/checkout" className="btn bg-primary-600 py-3 px-4 text-white font-semibold hover:bg-primary-700">
+                  <Link
+                    to="/checkout"
+                    className="btn bg-primary-600 py-3 px-4 text-white font-semibold hover:bg-primary-700"
+                  >
                     <i className="fa-solid fa-cart-shopping fa-bounce mr-2"></i>
                     Buy now
                   </Link>

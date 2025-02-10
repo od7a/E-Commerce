@@ -4,6 +4,7 @@ import DropdownFilter from "../../component/DropdownFilter/DropdownFilter";
 import Card from "../../component/Card/Card";
 import Loading from "../../component/Loading/Loading";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default function Products() {
   const [products, setProducts] = useState(null);
@@ -33,21 +34,23 @@ export default function Products() {
   useEffect(() => {
     if (products) {
       let filtered = [...products];
-      
+
       // Apply search filter
       if (formik.values.search) {
         filtered = filtered.filter((product) =>
-          product.title.toLowerCase().includes(formik.values.search.toLowerCase())
+          product.title
+            .toLowerCase()
+            .includes(formik.values.search.toLowerCase())
         );
       }
-      
+
       // Apply sorting
       if (sortOption === "price") {
         filtered.sort((a, b) => a.price - b.price);
       } else if (sortOption === "-price") {
         filtered.sort((a, b) => b.price - a.price);
       }
-      
+
       setFilteredProducts(filtered);
     }
   }, [formik.values.search, products, sortOption]);
@@ -58,6 +61,13 @@ export default function Products() {
 
   return (
     <>
+      <Helmet>
+        <title>Products - Explore Our Collection</title>
+        <meta
+          name="description"
+          content="Browse and search for the best products available in our store."
+        />
+      </Helmet>
       <section className="px-2">
         <div className="grid grid-cols-12 gap-5 mb-8">
           <div className="search col-span-12 sm:col-span-8 lg:col-span-10">

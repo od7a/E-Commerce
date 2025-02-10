@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Loading from "../../component/Loading/Loading";
+import { Helmet } from "react-helmet";
 
 export default function Categories() {
   const [categories, setCategories] = useState(null);
@@ -30,7 +31,7 @@ export default function Categories() {
       };
       let { data } = await axios.request(options);
       setSubcategories(data.data);
-      toast.success('Success');
+      toast.success("Success");
     } catch (error) {
       console.error("Error fetching subcategories:", error);
     } finally {
@@ -45,6 +46,13 @@ export default function Categories() {
 
   return (
     <>
+      <Helmet>
+        <title>FreshCart - Product Categories</title>
+        <meta
+          name="description"
+          content="Browse through our extensive product categories. Find everything you need organized in easy-to-navigate sections."
+        />
+      </Helmet>
       <section className="px-2 mb-8">
         <h1 className="text-3xl md:text-5xl font-bold mb-10 text-primary-600">
           <i className="fa-solid fa-layer-group text-4xl animate-bounce mr-1"></i>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../component/Loading/Loading";
 import imagLoading from "../../assets/imgs/Animation - 1734818008614.gif";
+import { Helmet } from "react-helmet";
 
 export default function Brands() {
   const [brands, setBrands] = useState(null);
@@ -43,6 +44,14 @@ export default function Brands() {
 
   return (
     <>
+      <Helmet>
+        <title>FreshCart - Top Brands</title>
+        <meta
+          name="description"
+          content="Explore trusted brands on FreshCart. Discover premium products from your favorite manufacturers and suppliers."
+        />
+      </Helmet>
+
       <section className="p-4 mb-8 min-h-screen bg-slate-200">
         <h1 className="text-3xl md:text-5xl font-bold mb-10 text-primary-600">
           <i className="fa-solid fa-tags text-4xl animate-bounce mr-1"></i>

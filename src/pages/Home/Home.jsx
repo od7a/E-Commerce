@@ -5,6 +5,7 @@ import axios from "axios";
 import HomeSlider from "../../component/HomeSlider/HomeSlider";
 import CategorySlider from "../../component/CategorySlider/CategorySlider";
 import { useFormik } from "formik";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [products, setProducts] = useState(null);
@@ -55,9 +56,15 @@ export default function Home() {
   if (!filteredProducts || !categories) {
     return <Loading />;
   }
-
   return (
     <>
+      <Helmet>
+        <title>FreshCart - Home</title>
+        <meta
+          name="description"
+          content="Discover fresh products and amazing deals on FreshCart. Shop now for the best groceries and household items!"
+        />
+      </Helmet>
       <section className="px-4">
         <HomeSlider />
         <CategorySlider categories={categories} />

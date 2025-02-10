@@ -22,6 +22,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import AllOrders from "./pages/AllOrders/AllOrders";
 import NotFound from "./pages/NotFound/NotFound";
+import Offline from "./component/Offline/Offline";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -64,13 +65,22 @@ export default function App() {
   ]);
 
   return (
-    <UserProvider>
-      <WishListProvider>
-        <CartProvider>
-          <RouterProvider router={router} />
-          <Toaster />
-        </CartProvider>
-      </WishListProvider>
-    </UserProvider>
+    <>
+      <UserProvider>
+        <WishListProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+            <Toaster />
+          </CartProvider>
+        </WishListProvider>
+      </UserProvider>
+
+      <Offline>
+        <div className="fixed bottom-8 right-8 flex items-center justify-center gap-3 z-50 bg-slate-100 p-3 rounded-md shadow ">
+          <i className="fa-solid fa-wifi text-red-600"></i>
+          <p>Wifi is not connect</p>
+        </div>
+      </Offline>
+    </>
   );
 }

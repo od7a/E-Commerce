@@ -6,6 +6,7 @@ import { CartContext } from "../../context/Cart.context";
 import { UserContext } from "../../context/User.context";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function CheckOut() {
   const { cartInfo, getCartProducts } = useContext(CartContext);
@@ -47,7 +48,7 @@ export default function CheckOut() {
         data: values,
       };
       let { data } = await axios.request(options);
-      console.log(data)
+      console.log(data);
 
       if (data.status === "success") {
         toast.success("Redirecting to Stripe...");
@@ -94,78 +95,87 @@ export default function CheckOut() {
   });
 
   return (
-    <section className="p-3">
-      <h1 className="text-xl font-semibold text-gray-600 mb-4">
-        Shipping Address
-      </h1>
-      <form className="space-y-4" onSubmit={formik.handleSubmit}>
-        <div className="city">
-          <input
-            type="text"
-            placeholder="City"
-            className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
-            {...formik.getFieldProps("shippingAddress.city")}
-          />
-          {formik.touched.shippingAddress?.city &&
-            formik.errors.shippingAddress?.city && (
-              <div className="text-red-500 text-sm">
-                {formik.errors.shippingAddress.city}
-              </div>
-            )}
-        </div>
+    <>
+      <Helmet>
+        <title>Checkout - Complete Your Order</title>
+        <meta
+          name="description"
+          content="Complete your order and choose your preferred payment method."
+        />
+      </Helmet>
+      <section className="p-3">
+        <h1 className="text-xl font-semibold text-gray-600 mb-4">
+          Shipping Address
+        </h1>
+        <form className="space-y-4" onSubmit={formik.handleSubmit}>
+          <div className="city">
+            <input
+              type="text"
+              placeholder="City"
+              className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
+              {...formik.getFieldProps("shippingAddress.city")}
+            />
+            {formik.touched.shippingAddress?.city &&
+              formik.errors.shippingAddress?.city && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.shippingAddress.city}
+                </div>
+              )}
+          </div>
 
-        <div className="phone">
-          <input
-            type="tel"
-            placeholder="Phone"
-            className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
-            {...formik.getFieldProps("shippingAddress.phone")}
-          />
-          {formik.touched.shippingAddress?.phone &&
-            formik.errors.shippingAddress?.phone && (
-              <div className="text-red-500 text-sm">
-                {formik.errors.shippingAddress.phone}
-              </div>
-            )}
-        </div>
+          <div className="phone">
+            <input
+              type="tel"
+              placeholder="Phone"
+              className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
+              {...formik.getFieldProps("shippingAddress.phone")}
+            />
+            {formik.touched.shippingAddress?.phone &&
+              formik.errors.shippingAddress?.phone && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.shippingAddress.phone}
+                </div>
+              )}
+          </div>
 
-        <div className="details">
-          <textarea
-            placeholder="Details"
-            className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
-            {...formik.getFieldProps("shippingAddress.details")}
-          ></textarea>
-          {formik.touched.shippingAddress?.details &&
-            formik.errors.shippingAddress?.details && (
-              <div className="text-red-500 text-sm">
-                {formik.errors.shippingAddress.details}
-              </div>
-            )}
-        </div>
+          <div className="details">
+            <textarea
+              placeholder="Details"
+              className="border-[2px] bg-slate-50 border-solid focus:ring-0 focus:outline-none border-primary-500 focus:border-primary-700 w-full"
+              {...formik.getFieldProps("shippingAddress.details")}
+            ></textarea>
+            {formik.touched.shippingAddress?.details &&
+              formik.errors.shippingAddress?.details && (
+                <div className="text-red-500 text-sm">
+                  {formik.errors.shippingAddress.details}
+                </div>
+              )}
+          </div>
 
-        <div className="btns flex gap-3 flex-wrap">
-          <button
-            type="button"
-            onClick={() => {
-              formik.setFieldValue("paymentWay", "cash");
-              setTimeout(() => formik.handleSubmit(), 100); 
-            }}
-            className="btn bg-blue-600 hover:bg-blue-700 duration-300 transition-colors px-3 py-2 text-white"
-          >
-            Cash Order
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              formik.setFieldValue("paymentWay", "online");
-              setTimeout(() => formik.handleSubmit(), 100);
-            }}
-            className="btn bg-primary-600 hover:bg-primary-700 duration-300 transition-colors px-3 py-2 text-white"
-          >
-            Online Payment
-          </button>
-        </div>
-      </form>
-    </section>
+          <div className="btns flex gap-3 flex-wrap">
+            <button
+              type="button"
+              onClick={() => {
+                formik.setFieldValue("paymentWay", "cash");
+                setTimeout(() => formik.handleSubmit(), 100);
+              }}
+              className="btn bg-blue-600 hover:bg-blue-700 duration-300 transition-colors px-3 py-2 text-white"
+            >
+              Cash Order
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                formik.setFieldValue("paymentWay", "online");
+                setTimeout(() => formik.handleSubmit(), 100);
+              }}
+              className="btn bg-primary-600 hover:bg-primary-700 duration-300 transition-colors px-3 py-2 text-white"
+            >
+              Online Payment
+            </button>
+          </div>
+        </form>
+      </section>
+    </>
   );
 }

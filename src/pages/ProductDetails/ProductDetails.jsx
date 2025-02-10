@@ -10,6 +10,7 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css/autoplay";
 import "swiper/css";
 import Card from "../../component/Card/Card";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
   const [productDetails, setProductDetails] = useState(null);
@@ -46,7 +47,7 @@ export default function ProductDetails() {
 
   useEffect(() => {
     getProductDetails();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!productDetails) return;
@@ -59,6 +60,15 @@ export default function ProductDetails() {
 
   return (
     <>
+      <Helmet>
+        <title>FreshCart - {productDetails.title}</title>
+        <meta
+          name="description"
+          content={`Explore ${
+            productDetails.title
+          } on FreshCart. ${productDetails.description.substring(0, 150)}...`}
+        />
+      </Helmet>
       <section className="bg-slate-100 p-4 rounded-xl mb-10 grid grid-cols-12 gap-4 md:gap-8">
         <div className="col-span-12 md:col-span-4 rounded-md shadow-lg overflow-hidden flex items-center">
           <ReactImageGallery

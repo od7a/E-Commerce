@@ -5,6 +5,7 @@ import Loading from "../../component/Loading/Loading";
 import imageloadin from "../../assets/imgs/Animation - 1734929112513.gif";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function AllOrders() {
   const [orders, setOrders] = useState(null);
@@ -28,6 +29,13 @@ export default function AllOrders() {
 
   return (
     <>
+      <Helmet>
+        <title>FreshCart - Order History</title>
+        <meta
+          name="description"
+          content="View your order history and track your purchases. Manage your past orders and check delivery status."
+        />
+      </Helmet>
       <section className="p-2">
         <h1 className="text-3xl md:text-5xl font-bold mb-10 text-primary-600">
           <i className="fa-solid fa-box text-4xl animate-bounce"></i> &nbsp;
