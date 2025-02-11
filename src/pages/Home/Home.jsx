@@ -16,19 +16,13 @@ export default function Home() {
   });
 
   async function getProducts() {
-    const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/products",
-      method: "GET",
-    };
-    return await axios.request(options);
+    const { data } = await axios.get("https://ecommerce.routemisr.com/api/v1/products");
+    return data.data;
   }
 
   async function getCategories() {
-    const options = {
-      url: "https://ecommerce.routemisr.com/api/v1/categories",
-      method: "GET",
-    };
-    return await axios.request(options);
+    const { data } = await axios.get("https://ecommerce.routemisr.com/api/v1/categories");
+    return data.data;
   }
 
   const { data: products, isLoading: productsLoading } = useQuery({
@@ -44,12 +38,10 @@ export default function Home() {
   // Add filtered products calculation
   const filteredProducts = useMemo(() => {
     if (!products) return [];
-    return products.data.data.filter((product) =>
-      product.title
-        .toLowerCase()
-        .includes(formik.values.searchTerm.toLowerCase())
+    return products.filter((product) =>
+      product.title.toLowerCase().includes(formik.values.searchTerm.toLowerCase())
     );
-  }, [products.data.data, formik.values.searchTerm]);
+  }, [products, formik.values.searchTerm]);
 
   if (productsLoading || categoriesLoading) {
     return <Loading />;

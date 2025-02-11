@@ -33,7 +33,7 @@ export default function CategorySlider({ categories }) {
             },
           }}
         >
-          {categories.data.data.map((category) => (
+          {categories.map((category) => (
             <SwiperSlide key={category._id}>
               <div className="h-64">
                 <img
