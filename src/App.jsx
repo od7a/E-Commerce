@@ -23,6 +23,7 @@ import CheckOut from "./pages/CheckOut/CheckOut";
 import AllOrders from "./pages/AllOrders/AllOrders";
 import NotFound from "./pages/NotFound/NotFound";
 import Offline from "./component/Offline/Offline";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -64,8 +65,11 @@ export default function App() {
     },
   ]);
 
+  const myClient=new QueryClient();
+
   return (
     <>
+      <QueryClientProvider client={myClient}>
       <UserProvider>
         <WishListProvider>
           <CartProvider>
@@ -81,6 +85,7 @@ export default function App() {
           <p>Wifi is not connect</p>
         </div>
       </Offline>
+      </QueryClientProvider>
     </>
   );
 }

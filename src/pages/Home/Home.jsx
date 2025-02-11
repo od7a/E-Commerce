@@ -1,25 +1,26 @@
 import Loading from "../../component/Loading/Loading";
 import Card from "../../component/Card/Card";
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
 import axios from "axios";
 import HomeSlider from "../../component/HomeSlider/HomeSlider";
 import CategorySlider from "../../component/CategorySlider/CategorySlider";
 import { useFormik } from "formik";
 import { Helmet } from "react-helmet";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
-  const [products, setProducts] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState(null);
-  const [categories, setCategories] = useState(null); // حالة جديدة للفئات
+  const formik = useFormik({
+    initialValues: {
+      searchTerm: "",
+    },
+  });
 
   async function getProducts() {
     const options = {
       url: "https://ecommerce.routemisr.com/api/v1/products",
       method: "GET",
     };
-    let { data } = await axios.request(options);
-    setProducts(data.data);
-    setFilteredProducts(data.data);
+    return await axios.request(options);
   }
 
   async function getCategories() {
@@ -27,35 +28,33 @@ export default function Home() {
       url: "https://ecommerce.routemisr.com/api/v1/categories",
       method: "GET",
     };
-    let { data } = await axios.request(options);
-    setCategories(data.data);
+    return await axios.request(options);
   }
 
-  useEffect(() => {
-    getProducts();
-    getCategories();
-  }, []);
-
-  const formik = useFormik({
-    initialValues: {
-      searchTerm: "",
-    },
+  const { data: products, isLoading: productsLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
   });
 
-  useEffect(() => {
-    if (products) {
-      const filtered = products.filter((product) =>
-        product.title
-          .toLowerCase()
-          .includes(formik.values.searchTerm.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    }
-  }, [formik.values.searchTerm, products]);
+  const { data: categories, isLoading: categoriesLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
 
-  if (!filteredProducts || !categories) {
+  // Add filtered products calculation
+  const filteredProducts = useMemo(() => {
+    if (!products) return [];
+    return products.data.data.filter((product) =>
+      product.title
+        .toLowerCase()
+        .includes(formik.values.searchTerm.toLowerCase())
+    );
+  }, [products.data.data, formik.values.searchTerm]);
+
+  if (productsLoading || categoriesLoading) {
     return <Loading />;
   }
+
   return (
     <>
       <Helmet>

@@ -15,6 +15,7 @@ import { Helmet } from "react-helmet";
 export default function ProductDetails() {
   const [productDetails, setProductDetails] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState(null);
+  const [loading, setLoading] = useState(false); 
   const { addProductToCart } = useContext(CartContext);
   const { addProductToWishList, checkedProduct } = useContext(WishListContext);
   const { id } = useParams();
@@ -57,6 +58,18 @@ export default function ProductDetails() {
   if (!productDetails || !relatedProducts) {
     return <Loading />;
   }
+
+  const handleAddToCart = async () => {
+    setLoading(true); 
+
+    try {
+      await addProductToCart({ productId: id });
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false); 
+  };
 
   return (
     <>
@@ -124,12 +137,15 @@ export default function ProductDetails() {
           </div>
           <div className="flex items-center gap-2">
             <button
-              className="bg-primary-500 hover:bg-primary-600 transition-colors duration-300 text-white grow rounded-md px-6 py-2"
-              onClick={() => {
-                addProductToCart({ productId: id });
-              }}
+              className="bg-primary-500 hover:bg-primary-600 transition-colors duration-300 text-white grow rounded-md px-6 py-2 flex justify-center items-center"
+              onClick={handleAddToCart}
+              disabled={loading} 
             >
-              Add Cart
+              {loading ? (
+                <i className="fa-solid fa-spinner fa-spin"></i>
+              ) : (
+                "Add Cart"
+              )}
             </button>
             <div
               className={`rounded-full p-5 size-8 flex items-center justify-center cursor-pointer ${
